@@ -6,15 +6,15 @@ namespace Calculator
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private const int startingRow = 3;
 
         private readonly string[] buttonsStrings =
         {
-            "7", "8", "9", "*",
-            "4", "5", "6", "-",
-            "1", "2", "3", "+",
+            "7", "8", "9", " * ",
+            "4", "5", "6", " - ",
+            "1", "2", "3", " + ",
             "+/-", "0", ".", "=",
         };
 
@@ -29,11 +29,11 @@ namespace Calculator
 
         private void AddDisplayLabels()
         {
-            var operationsLabel = new Label()
+            operationsLabel = new Label()
             {
-                Content = "Display"
+                Content = ""
             };
-            var resultsLabel = new Label()
+            resultsLabel = new Label()
             {
                 Content = "Hello There"
             };
@@ -51,12 +51,13 @@ namespace Calculator
             var clearButton = new Button()
             {
                 Content = "C",
-                Margin = new Thickness(2, 2, 2, 2)
+                Margin = new Thickness(2, 2, 2, 2),
             };
+            clearButton.Click += NumberButton_Click;
             var clearEverythingButton = new Button()
             {
                 Content = "CE",
-                Margin = new Thickness(2, 2, 2, 2)
+                Margin = new Thickness(2, 2, 2, 2),
             };
             var divisionButton = new Button()
             {
