@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Calculator
@@ -12,9 +14,9 @@ namespace Calculator
 
         private readonly string[] buttonsStrings =
         {
-            "7", "8", "9", " * ",
-            "4", "5", "6", " - ",
-            "1", "2", "3", " + ",
+            "7", "8", "9", "*",
+            "4", "5", "6", "-",
+            "1", "2", "3", "+",
             "+/-", "0", ".", "=",
         };
 
@@ -29,32 +31,32 @@ namespace Calculator
 
         private void AddDisplayLabels()
         {
-            operationsLabel = new Label()
+            _operationsLabel = new Label
             {
                 Content = ""
             };
-            resultsLabel = new Label()
+            _resultsLabel = new Label
             {
                 Content = "Hello There"
             };
 
-            MainGrid.Children.Add(operationsLabel);
-            Grid.SetColumnSpan(operationsLabel, MainGrid.ColumnDefinitions.Count);
+            MainGrid.Children.Add(_operationsLabel);
+            Grid.SetColumnSpan(_operationsLabel, MainGrid.ColumnDefinitions.Count);
 
-            MainGrid.Children.Add(resultsLabel);
-            Grid.SetRow(resultsLabel, 1);
-            Grid.SetColumnSpan(resultsLabel, MainGrid.ColumnDefinitions.Count);
+            MainGrid.Children.Add(_resultsLabel);
+            Grid.SetRow(_resultsLabel, 1);
+            Grid.SetColumnSpan(_resultsLabel, MainGrid.ColumnDefinitions.Count);
         }
 
         private void AddClearingButtons()
         {
-            var clearButton = new Button()
+            var clearButton = new Button
             {
                 Content = "C",
                 Margin = new Thickness(2, 2, 2, 2),
             };
             clearButton.Click += NumberButton_Click;
-            var clearEverythingButton = new Button()
+            var clearEverythingButton = new Button
             {
                 Content = "CE",
                 Margin = new Thickness(2, 2, 2, 2),
@@ -82,7 +84,7 @@ namespace Calculator
         {
             for (var i = 0; i < buttonsStrings.Length; i++)
             {
-                var b = new Button()
+                var b = new Button
                 {
                     Content = buttonsStrings[i],
                     Margin = new Thickness(2, 2, 2, 2)
