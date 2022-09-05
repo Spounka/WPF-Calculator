@@ -118,5 +118,48 @@ namespace Calculator
                 Grid.SetColumn(b, column);
             }
         }
+
+        private void CalculateResult_Click()
+        {
+            if (double.IsNaN(firstNumber))
+                return;
+            if (!double.TryParse(operationsLabelText, out secondNumber))
+            {
+                resultsLabelText = "Error, Operation Invalid";
+                return;
+            }
+
+
+            switch (currentOperation)
+            {
+                case '/':
+                    if (secondNumber == 0)
+                    {
+                        resultsLabelText = "Cannot Divide by zero";
+                        return;
+                    }
+
+                    firstNumber /= secondNumber;
+                    break;
+                case '*':
+                    firstNumber *= secondNumber;
+                    break;
+                case '+':
+                    firstNumber += secondNumber;
+                    break;
+                case '-':
+                    firstNumber -= secondNumber;
+                    break;
+                default:
+                    operationsLabelText = resultsLabelText = firstNumber.ToString(CultureInfo.CurrentCulture);
+                    break;
+            }
+
+            operationsLabelText = resultsLabelText = firstNumber.ToString(CultureInfo.CurrentCulture);
+            hasDot = false;
+
+            // To Prevent calculating twice, we set current operation to a random char
+            currentOperation = 'n';
+        }
     }
 }
