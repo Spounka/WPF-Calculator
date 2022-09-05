@@ -81,11 +81,14 @@ namespace Calculator
                 Content = "CE",
                 Margin = new Thickness(2, 2, 2, 2),
             };
-            var divisionButton = new Button()
+            clearEverythingButton.Click += NumberButton_Click;
+
+            var divisionButton = new Button
             {
                 Content = "/",
                 Margin = new Thickness(2, 2, 2, 2)
             };
+            divisionButton.Click += NumberButton_Click;
 
             MainGrid.Children.Add(clearButton);
             Grid.SetRow(clearButton, 2);
@@ -109,6 +112,7 @@ namespace Calculator
                     Content = buttonsStrings[i],
                     Margin = new Thickness(2, 2, 2, 2)
                 };
+                b.Click += NumberButton_Click;
                 MainGrid.Children.Add(b);
 
                 var row = i / MainGrid.ColumnDefinitions.Count;
