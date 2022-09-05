@@ -119,6 +119,42 @@ namespace Calculator
             }
         }
 
+
+        private void ClearButton_Click(string buttonText)
+        {
+            if (string.CompareOrdinal(buttonText, "C") == 0)
+            {
+                if (string.IsNullOrEmpty(operationsLabelText))
+                    return;
+
+                if (buttonText[^1] == '.')
+                    hasDot = false;
+
+                operationsLabelText =
+                    operationsLabelText.Remove(operationsLabelText.Length - 1);
+                return;
+            }
+
+            operationsLabelText = "";
+            resultsLabelText = "";
+            firstNumber = secondNumber = double.NaN;
+            hasDot = false;
+        }
+
+        private void OperationButton_Click(string content)
+        {
+            CalculateResult_Click();
+            currentOperation = content[0];
+            if (!double.TryParse(operationsLabelText, out firstNumber))
+            {
+                resultsLabelText = "Error, Operation Invalid";
+                return;
+            }
+
+            resultsLabelText = firstNumber.ToString(CultureInfo.InvariantCulture);
+            operationsLabelText = "";
+        }
+
         private void CalculateResult_Click()
         {
             if (double.IsNaN(firstNumber))
