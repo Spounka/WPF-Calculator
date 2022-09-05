@@ -27,6 +27,7 @@ namespace Calculator
             AddDisplayLabels();
             AddClearingButtons();
             AddOperationButtons();
+            ClearButton_Click("CE");
         }
 
         private void AddDisplayLabels()
