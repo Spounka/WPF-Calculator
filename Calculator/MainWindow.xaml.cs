@@ -20,6 +20,25 @@ namespace Calculator
             "+/-", "0", ".", "=",
         };
 
+        private readonly Label operationsLabel;
+        private readonly Label resultsLabel;
+
+        private double firstNumber, secondNumber;
+        private char currentOperation;
+        private bool hasDot;
+
+        private string operationsLabelText
+        {
+            get => (string)operationsLabel.Content;
+            set => operationsLabel.Content = value;
+        }
+
+        private string resultsLabelText
+        {
+            set => resultsLabel.Content = value;
+        }
+
+
         public MainWindow()
         {
             InitializeComponent();
