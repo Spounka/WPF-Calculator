@@ -24,13 +24,13 @@ namespace Calculator
         {
             InitializeComponent();
 
-            AddDisplayLabels();
+            AddDisplayLabels(out operationsLabel, out resultsLabel);
             AddClearingButtons();
             AddOperationButtons();
             ClearButton_Click("CE");
         }
 
-        private void AddDisplayLabels()
+        private void AddDisplayLabels(out Label _operationsLabel, out Label _resultsLabel)
         {
             _operationsLabel = new Label
             {
