@@ -119,6 +119,52 @@ namespace Calculator
             }
         }
 
+        private void NumberButton_Click(object sender, EventArgs e)
+        {
+            var buttonText = (string)((Button)sender).Content;
+
+            if (int.TryParse(buttonText, out _))
+            {
+                operationsLabelText = string.Concat(operationsLabelText, buttonText);
+                return;
+            }
+
+            if (string.CompareOrdinal(buttonText, "C") == 0 || string.CompareOrdinal(buttonText, "CE") == 0)
+            {
+                ClearButton_Click(buttonText);
+                return;
+            }
+
+            if (string.CompareOrdinal(buttonText, "/") == 0 || string.CompareOrdinal(buttonText, "*") == 0 ||
+                string.CompareOrdinal(buttonText, "-") == 0 || string.CompareOrdinal(buttonText, "+") == 0)
+            {
+                OperationButton_Click(buttonText);
+                return;
+            }
+
+            if (string.CompareOrdinal(buttonText, "=") == 0)
+            {
+                CalculateResult_Click();
+                return;
+            }
+
+            if (string.CompareOrdinal(buttonText, "+/-") == 0)
+            {
+                operationsLabelText = operationsLabelText[0] switch
+                {
+                    '-' => operationsLabelText.Remove(operationsLabelText[0]),
+                    _ => string.Concat("-", operationsLabelText)
+                };
+            }
+
+            if (string.CompareOrdinal(buttonText, ".") != 0 || hasDot) return;
+
+            if (string.IsNullOrEmpty(operationsLabelText) || string.IsNullOrWhiteSpace(operationsLabelText))
+                operationsLabelText = "0";
+            operationsLabelText = string.Concat(operationsLabelText, ".");
+            hasDot = true;
+        }
+
 
         private void ClearButton_Click(string buttonText)
         {
